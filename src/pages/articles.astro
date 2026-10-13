@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Writing | Faisal Ahmed Khan"><header class="page-header"><p class="eyebrow">Articles & writing</p><h1>Notes worth revisiting.</h1><p>Writing about engineering, learning, and the questions that emerge along the way.</p></header>{articles.length ? <div class="grid">{articles.map((article) => <article class="card"><span class="tag">{article.data.category}</span><h2><a href={`/articles/${article.slug}/`}>{article.data.title}</a></h2><p>{article.data.summary}</p></article>)}</div> : <div class="notice"><strong>No articles have been published yet.</strong> Add Markdown articles to <code>src/content/articles/</code>; publish only work you are ready to stand behind.</div>}</BaseLayout>

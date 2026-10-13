@@ -1,0 +1,8 @@
+<!-- src/components/Nav.astro -->
+---
+const links = [['/about/', 'About'], ['/projects/', 'Projects'], ['/learning-teaching/', 'Teaching'], ['/articles/', 'Writing'], ['/resources/', 'Resources'], ['/cv/', 'CV'], ['/contact/', 'Contact']];
+const current = Astro.url.pathname;
+---
+<nav class="site-nav" aria-label="Primary navigation">
+  {links.map(([href, label]) => <a href={href} aria-current={current === href ? 'page' : undefined}>{label}</a>)}
+</nav>

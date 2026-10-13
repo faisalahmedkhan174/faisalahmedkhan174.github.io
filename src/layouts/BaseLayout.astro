@@ -1,0 +1,30 @@
+<!-- src/layouts/BaseLayout.astro -->
+---
+import Nav from "../components/Nav.astro";
+import "../styles/global.css";
+interface Props { title?: string; description?: string; }
+const { title = "Faisal Ahmed Khan | Academic Portfolio", description = "Academic portfolio of Faisal Ahmed Khan, an Electrical and Electronic Engineering student." } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="wordmark" href="/" aria-label="Faisal Ahmed Khan home">Faisal <span>Ahmed Khan</span></a>
+      <Nav />
+      </div>
+    </header>
+    <main id="main-content" class="shell">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="shell footer-inner"><p>© {new Date().getFullYear()} Faisal Ahmed Khan</p><p>Electrical & Electronic Engineering · Learning in public</p></div>
+    </footer>
+  </body>
+</html>
